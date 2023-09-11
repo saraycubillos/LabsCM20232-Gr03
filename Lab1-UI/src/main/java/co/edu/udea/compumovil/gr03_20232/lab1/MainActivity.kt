@@ -3,7 +3,6 @@ package co.edu.udea.compumovil.gr03_20232.lab1
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -18,8 +17,8 @@ class MainActivity : ComponentActivity() {
         setContent {
             Labs20232Gr03Theme {
                 // A surface container using the 'background' color from the theme
-                Surface(modifier = Modifier.fillMaxSize(), color = MaterialTheme.colorScheme.background) {
-                    Greeting("Android")
+                Surface(color = MaterialTheme.colorScheme.background) {
+                    PersonalDataForm()
                 }
             }
         }
