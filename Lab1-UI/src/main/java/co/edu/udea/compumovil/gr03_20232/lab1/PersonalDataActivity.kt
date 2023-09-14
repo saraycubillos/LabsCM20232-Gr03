@@ -3,6 +3,7 @@ package co.edu.udea.compumovil.gr03_20232.lab1
 import android.content.Context
 import android.content.res.Configuration
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -38,9 +39,9 @@ import co.edu.udea.compumovil.gr03_20232.lab1.composable.SchoolGradeSpinner
 import co.edu.udea.compumovil.gr03_20232.lab1.composable.SexRadioButtons
 import co.edu.udea.compumovil.gr03_20232.lab1.composable.TitleText
 import co.edu.udea.compumovil.gr03_20232.lab1.ui.theme.Labs20232Gr03Theme
-import java.lang.StringBuilder
 import java.text.SimpleDateFormat
 import java.util.Date
+import kotlin.text.StringBuilder
 
 class PersonalDataActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -157,13 +158,22 @@ fun PersonalDataFormPortrait(context: Context, personalDataFormTitle: String) {
 fun personalDataFormNextButtonOnClick(context: Context) {
     if (isDataValid(context)) {
         trimNameAndSurname()
-        toastAllData(context)
+        logcatAllData()
     }
 }
 
-fun toastAllData(context: Context) {
-    val allDataToastMessage = "${name.text} ${surname.text} ${selectedSexOption.value} ${birthDate.value} $selectedSchoolGradeOption"
-    Toast.makeText(context, allDataToastMessage, Toast.LENGTH_SHORT).show()
+fun logcatAllData() {
+    val logAllDataMessage = StringBuilder()
+    logAllDataMessage.append("Información personal: \n")
+    logAllDataMessage.append("Nombre completo: ${name.text} ${surname.text} \n")
+    logAllDataMessage.append("Fecha de nacimiento: ${birthDate.value} \n")
+    if (selectedSexOption.value.isNotEmpty()) {
+        logAllDataMessage.append("Sexo: ${selectedSexOption.value} \n")
+    }
+    if (selectedSchoolGradeOption.isNotEmpty()) {
+        logAllDataMessage.append("Grado escolaridad: $selectedSchoolGradeOption \n")
+    }
+    Log.i("PersonalDataActivity", logAllDataMessage.toString())
 }
 
 fun trimNameAndSurname() {
