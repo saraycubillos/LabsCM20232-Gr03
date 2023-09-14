@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">Labs20232-Gr03</string>
     <string name="title_activity_personal_data">PersonalDataActivity</string>
+    <string name="full_name">Full Name</string>
     <string name="name_text_field_hint">Name</string>
     <string name="surname_text_field_hint">Surname</string>
     <string name="sex_title_radiobutton">Sex: </string>
@@ -13,9 +14,10 @@
     <string name="school_grade_primary">Primary</string>
     <string name="school_grade_secondary">Secondary</string>
     <string name="school_grade_university">University</string>
-    <string name="invalid_name_toast_message">Name is mandatory</string>
-    <string name="invalid_surname_toast_message">Surname is mandatory</string>
-    <string name="invalid_birthdate_toast_message">Birthdate is mandatory</string>
+    <string name="invalid_name_toast_message">Name is mandatory and can not have numbers</string>
+    <string name="invalid_surname_toast_message">Surname is mandatory and can not have numbers</string>
+    <string name="invalid_birthdate_toast_message">Birthdate is mandatory and can not be a date on the future</string>
     <string name="personal_data_form_title">Personal Information</string>
     <string name="next">Next</string>
+    <string name="title_activity_test">Test</string>
 </resources>

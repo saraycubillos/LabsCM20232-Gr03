@@ -72,7 +72,6 @@ fun SchoolGradeSpinner(
                 fontWeight = MaterialTheme.typography.bodyLarge.fontWeight,
             ),
         )
-
         ExposedDropdownMenu(
             expanded = expandedState,
             onDismissRequest = {

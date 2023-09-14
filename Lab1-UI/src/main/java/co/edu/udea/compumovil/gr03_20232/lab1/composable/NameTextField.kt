@@ -27,6 +27,7 @@ import co.edu.udea.compumovil.gr03_20232.lab1.R
 @Composable
 fun NameTextField(
     context: Context,
+    widthFraction: Float,
     name: TextFieldValue,
     onNameChanged: (TextFieldValue) -> Unit) {
     val nameTextFieldHint = context.getString(R.string.name_text_field_hint)
@@ -39,7 +40,7 @@ fun NameTextField(
             Text(nameTextFieldHint)
         },
         modifier = Modifier
-            .fillMaxWidth()
+            .fillMaxWidth(widthFraction)
             .height(60.dp),
         colors = TextFieldDefaults.textFieldColors(
             containerColor = Color.Transparent,

@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.RadioButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -18,7 +19,9 @@ import androidx.compose.ui.unit.dp
 import co.edu.udea.compumovil.gr03_20232.lab1.R
 
 @Composable
-fun SexRadioButtons(context: Context, selectedSexOption: MutableState<String>) {
+fun SexRadioButtons(
+    context: Context,
+    selectedSexOption: MutableState<String>) {
     val sexTitle = context.getString(R.string.sex_title_radiobutton)
     val maleString = context.getString(R.string.male_sex)
     val femaleString = context.getString(R.string.female_sex)
@@ -31,6 +34,11 @@ fun SexRadioButtons(context: Context, selectedSexOption: MutableState<String>) {
         verticalAlignment = Alignment.CenterVertically
     ) {
         Icon(Icons.Filled.Favorite, contentDescription = sexTitle)
+        Text(
+            text =sexTitle,
+            fontSize = MaterialTheme.typography.titleMedium.fontSize,
+            fontWeight = MaterialTheme.typography.titleMedium.fontWeight,
+        )
         SexRadioButton(selectedSexOption, maleString)
         SexRadioButton(selectedSexOption, femaleString)
         SexRadioButton(selectedSexOption, otherString)

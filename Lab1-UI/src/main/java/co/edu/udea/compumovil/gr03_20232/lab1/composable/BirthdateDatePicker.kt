@@ -26,16 +26,17 @@ import java.util.Calendar
 import java.util.Date
 
 @Composable
-fun BirthdateDatePicker(context: Context, birthdate: MutableState<String>) {
+fun BirthdateDatePicker(
+    context: Context,
+    birthdate: MutableState<String>
+) {
     val birthdateTitle = context.getString(R.string.birth_date_title)
     val selectString = context.getString(R.string.select)
     val calendar = Calendar.getInstance()
     val birthdateYear = calendar.get(Calendar.YEAR)
     val birthdateMonth = calendar.get(Calendar.MONTH)
     val birthdateDay = calendar.get(Calendar.DAY_OF_MONTH)
-
     calendar.time = Date()
-
     val datePickerDialog = DatePickerDialog(
         context,
         { _: DatePicker, year: Int, month: Int, dayOfMonth: Int ->
@@ -45,7 +46,6 @@ fun BirthdateDatePicker(context: Context, birthdate: MutableState<String>) {
         birthdateMonth,
         birthdateDay
     )
-
     Row(
         modifier = Modifier
             .fillMaxWidth()

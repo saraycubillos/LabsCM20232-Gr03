@@ -27,6 +27,7 @@ import co.edu.udea.compumovil.gr03_20232.lab1.R
 @Composable
 fun SurnameTextField(
     context: Context,
+    widthFraction: Float,
     surname: TextFieldValue,
     onSurnameChanged: (TextFieldValue) -> Unit
 ) {
@@ -40,7 +41,7 @@ fun SurnameTextField(
             Text(lastNameTextFieldHint)
         },
         modifier = Modifier
-            .fillMaxWidth()
+            .fillMaxWidth(widthFraction)
             .height(60.dp),
         colors = TextFieldDefaults.textFieldColors(
             containerColor = Color.Transparent,
