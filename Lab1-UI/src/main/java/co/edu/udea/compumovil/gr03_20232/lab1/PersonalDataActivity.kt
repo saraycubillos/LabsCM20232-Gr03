@@ -135,6 +135,7 @@ fun PersonalDataFormPortrait(context: Context, personalDataFormTitle: String) {
             FullNameText(context)
             NameTextField(context, 1F, name) {
                     newName -> name = newName
+
             }
             SurnameTextField(context, 1F, surname) {
                     newSurname -> surname = newSurname
