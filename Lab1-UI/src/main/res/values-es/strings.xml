@@ -23,6 +23,11 @@
     <string name="invalid_birthdate_toast_message">La fecha de nacimiento es obligatoria y no puede ser una fecha futura</string>
     <string name="personal_data_form_title">Información personal</string>
     <string name="contact_data_form_title">Información de contacto</string>
+    <string name="phone_invalid">El número de teléfono es obligatorio</string>
+    <string name="email_invalid">El correo electrónico es obligatorio y debe ser un correo electrónico válido</string>
+    <string name="country_invalid">El país es obligatorio y debe ser uno de la lista</string>
+    <string name="contact_data_form_finished_toast_message">Logcats listos</string>
+    <string name="country_text_field_hint">País</string>
+    <string name="city_text_field_hint">Ciudad</string>
     <string name="next">Siguiente</string>
-    <string name="title_activity_test">Prueba</string>
 </resources>

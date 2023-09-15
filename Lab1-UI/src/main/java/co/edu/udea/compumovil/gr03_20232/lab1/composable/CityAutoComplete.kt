@@ -39,34 +39,16 @@ import co.edu.udea.compumovil.gr03_20232.lab1.R
 @RequiresApi(Build.VERSION_CODES.M)
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun CountryAutoComplete(
+fun CityAutoComplete(
     context: Context,
-    country: MutableState<String>,
-    countries: MutableSet<String>
+    country : MutableState<String>,
+    city: MutableState<String>,
+    cities: MutableSet<String>
 ) {
-    countries.addAll(
-        setOf(
-        "Argentina",
-        "Bolivia",
-        "Brasil",
-        "Chile",
-        "Colombia",
-        "Costa Rica",
-        "Cuba",
-        "Ecuador",
-        "El Salvador",
-        "Guatemala",
-        "Haití",
-        "Honduras",
-        "México",
-        "Nicaragua",
-        "Panamá",
-        "Paraguay",
-        "Perú",
-        "República Dominicana",
-        "Uruguay",
-        "Venezuela")
-    )
+    //TODO la peticion api con country para obtener las ciudades y agregarlas al set
+    LaunchedEffect(country.value) {
+        //cities.addAll(setOf())
+    }
 
     val heightTextFields by remember {
         mutableStateOf(55.dp)
@@ -84,7 +66,6 @@ fun CountryAutoComplete(
         MutableInteractionSource()
     }
 
-    // Category Field
     Column(
         modifier = Modifier
             .padding(30.dp)
@@ -100,7 +81,7 @@ fun CountryAutoComplete(
 
         Text(
             modifier = Modifier.padding(start = 3.dp, bottom = 2.dp),
-            text = context.getString(R.string.country_text_field_hint),
+            text = context.getString(R.string.city_text_field_hint),
             fontSize = 16.sp,
             color = Color.Black,
             fontWeight = FontWeight.Medium
@@ -121,9 +102,9 @@ fun CountryAutoComplete(
                         .onGloballyPositioned { coordinates ->
                             textFieldSize = coordinates.size.toSize()
                         },
-                    value = country.value,
+                    value = city.value,
                     onValueChange = { newValue: String ->
-                        country.value = newValue
+                        city.value = newValue
                         expanded = true
                     },
                     colors = TextFieldDefaults.textFieldColors(
@@ -166,18 +147,18 @@ fun CountryAutoComplete(
                         modifier = Modifier.heightIn(max = 150.dp),
                     ) {
 
-                        if (country.value.isNotEmpty()) {
+                        if (city.value.isNotEmpty()) {
                             items(
-                                countries.filter {
+                                cities.filter {
                                     it.lowercase()
-                                        .contains(country.value.lowercase()) || it.lowercase()
+                                        .contains(city.value.lowercase()) || it.lowercase()
                                         .contains(context.getString(R.string.other))
                                 }
                                     .sorted()
                             ) {
                                 CategoryItems(
                                     title = it,
-                                    category = country,
+                                    category = city,
                                     onExpandedChange = { newExpanded ->
                                         expanded = newExpanded
                                     }
@@ -185,24 +166,21 @@ fun CountryAutoComplete(
                             }
                         } else {
                             items(
-                                countries.sorted()
+                                cities.sorted()
                             ) {
                                 CategoryItems(
                                     title = it,
-                                    category = country,
+                                    category = city,
                                     onExpandedChange = { newExpanded ->
                                         expanded = newExpanded
                                     }
                                 )
                             }
                         }
-
                     }
-
                 }
             }
-
         }
-
     }
 }
+

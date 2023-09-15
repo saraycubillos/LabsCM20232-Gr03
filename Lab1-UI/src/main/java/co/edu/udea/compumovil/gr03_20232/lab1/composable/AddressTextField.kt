@@ -17,7 +17,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.input.ImeAction
-import androidx.compose.ui.text.input.KeyboardCapitalization
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.unit.dp
@@ -25,19 +24,19 @@ import co.edu.udea.compumovil.gr03_20232.lab1.R
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun AdressTextField(
+fun AddressTextField(
     context: Context,
     widthFraction: Float,
-    name: TextFieldValue,
-    onNameChanged: (TextFieldValue) -> Unit) {
-    val adressTextFieldHint = context.getString(R.string.address_text_field_hint)
+    address: TextFieldValue,
+    onAddressChanged: (TextFieldValue) -> Unit) {
+    val addressTextFieldHint = context.getString(R.string.address_text_field_hint)
     TextField(
-        value = name,
+        value = address,
         onValueChange = {
-            onNameChanged(it)
+            onAddressChanged(it)
         },
         label = {
-            Text(adressTextFieldHint)
+            Text(addressTextFieldHint)
         },
         modifier = Modifier
             .fillMaxWidth(widthFraction)
@@ -53,13 +52,11 @@ fun AdressTextField(
         keyboardOptions = KeyboardOptions(
             keyboardType = KeyboardType.Text,
             imeAction = ImeAction.Next,
-            capitalization = KeyboardCapitalization.Words,
             autoCorrect = false
-
         ),
         singleLine = true,
         leadingIcon = {
-            Icon(Icons.Filled.LocationOn, contentDescription = adressTextFieldHint)
+            Icon(Icons.Filled.LocationOn, contentDescription = addressTextFieldHint)
         }
     )
 }

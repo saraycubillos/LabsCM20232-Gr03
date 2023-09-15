@@ -5,7 +5,6 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Person
 import androidx.compose.material.icons.filled.Phone
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
@@ -29,13 +28,13 @@ import co.edu.udea.compumovil.gr03_20232.lab1.R
 fun PhoneTextField(
     context: Context,
     widthFraction: Float,
-    name: TextFieldValue,
-    onNameChanged: (TextFieldValue) -> Unit) {
+    phone: TextFieldValue,
+    onPhoneChanged: (TextFieldValue) -> Unit) {
     val phoneTextFieldHint = context.getString(R.string.phone_text_field_hint)
     TextField(
-        value = name,
+        value = phone,
         onValueChange = {
-            onNameChanged(it)
+            onPhoneChanged(it)
         },
         label = {
             Text(phoneTextFieldHint)
@@ -52,11 +51,9 @@ fun PhoneTextField(
             fontWeight = MaterialTheme.typography.bodyLarge.fontWeight,
         ),
         keyboardOptions = KeyboardOptions(
-            keyboardType = KeyboardType.Text,
+            keyboardType = KeyboardType.Phone,
             imeAction = ImeAction.Next,
-            capitalization = KeyboardCapitalization.Words,
             autoCorrect = false
-
         ),
         singleLine = true,
         leadingIcon = {
