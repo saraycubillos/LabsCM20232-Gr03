@@ -89,6 +89,7 @@ fun PersonalDataFormLandscape(context: Context, personalDataFormTitle: String) {
             .verticalScroll(rememberScrollState()),
         verticalArrangement = Arrangement.spacedBy(25.dp),
     ) {
+
         TitleText(personalDataFormTitle)
         FullNameText(context)
         Row (
@@ -108,7 +109,7 @@ fun PersonalDataFormLandscape(context: Context, personalDataFormTitle: String) {
         SchoolGradeSpinner(context, selectedSchoolGradeOption) {
                 newSelectedSchoolGradeOption -> selectedSchoolGradeOption = newSelectedSchoolGradeOption
         }
-        Spacer(modifier = Modifier.height(10.dp))
+        //Spacer(modifier = Modifier.height(10.dp))
         NextButtonCenterEnd(
             context = context,
             onClickFunction = {
@@ -124,7 +125,7 @@ fun PersonalDataFormPortrait(context: Context, personalDataFormTitle: String) {
         modifier = Modifier
             .fillMaxWidth()
             .fillMaxHeight()
-            .padding(10.dp),
+            .padding(2.dp),
         verticalArrangement = Arrangement.spacedBy(35.dp),
     ) {
         TitleText(personalDataFormTitle)
@@ -146,7 +147,7 @@ fun PersonalDataFormPortrait(context: Context, personalDataFormTitle: String) {
         SchoolGradeSpinner(context, selectedSchoolGradeOption) {
                 newSelectedSchoolGradeOption -> selectedSchoolGradeOption = newSelectedSchoolGradeOption
         }
-        Spacer(modifier = Modifier.height(10.dp))
+        //Spacer(modifier = Modifier.height(10.dp))
         NextButtonCenterEnd(
             context = context,
             onClickFunction = {

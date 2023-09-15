@@ -1,9 +1,12 @@
 package co.edu.udea.compumovil.gr03_20232.lab1
 
 import android.content.Context
+import android.content.res.Configuration
+import android.os.Build
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.annotation.RequiresApi
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -28,6 +31,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.tooling.preview.Preview
@@ -38,10 +42,12 @@ import co.edu.udea.compumovil.gr03_20232.lab1.composable.CountryDropdownField
 import co.edu.udea.compumovil.gr03_20232.lab1.composable.EmailTextField
 import co.edu.udea.compumovil.gr03_20232.lab1.composable.NameTextField
 import co.edu.udea.compumovil.gr03_20232.lab1.composable.PhoneTextField
+import co.edu.udea.compumovil.gr03_20232.lab1.composable.AutoComplete
 import co.edu.udea.compumovil.gr03_20232.lab1.composable.TitleText
 import co.edu.udea.compumovil.gr03_20232.lab1.ui.theme.Labs20232Gr03Theme
 
 class ContactDataActivity : ComponentActivity() {
+    @RequiresApi(Build.VERSION_CODES.M)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
@@ -49,16 +55,31 @@ class ContactDataActivity : ComponentActivity() {
                 Surface(
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    //ContactDataForm("hola");
+                    ContactDataForm();
                 }
             }
         }
     }
 }
 
+@RequiresApi(Build.VERSION_CODES.M)
+@Composable
+fun ContactDataForm() {
+    val context = LocalContext.current
+    val personalDataFormTitle = context.getString(R.string.contact_data_form_title)
+    val configuration = LocalConfiguration.current
+    when (configuration.orientation) {
+        Configuration.ORIENTATION_PORTRAIT -> {
+            ContactDataFormLandscape(context, personalDataFormTitle)
+        }
+    }
+
+}
+
+@RequiresApi(Build.VERSION_CODES.M)
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun ContactDataForm(context: Context, titulo: String) {
+fun ContactDataFormLandscape(context: Context, titulo: String) {
     Column(
         modifier = Modifier
             .fillMaxWidth()
@@ -76,7 +97,7 @@ fun ContactDataForm(context: Context, titulo: String) {
             EmailTextField(context,1F, name) {
                     newName -> name = newName
             }
-            CountryDropdownField();
+            AutoComplete();
             CityDropdownField();
             AdressTextField(context,1F, name) {
                     newName -> name = newName
@@ -88,6 +109,7 @@ fun ContactDataForm(context: Context, titulo: String) {
         // Aquí puedes agregar los campos y contenido del formulario de datos personales
 }
 
+@RequiresApi(Build.VERSION_CODES.M)
 @Preview(showBackground = true)
 @Composable
 fun ContactDataActivityPreview() {
@@ -95,7 +117,7 @@ fun ContactDataActivityPreview() {
     Labs20232Gr03Theme {
         val context = LocalContext.current
         val contactDataFormTitle = context.getString(R.string.contact_data_form_title);
-        ContactDataForm(context, contactDataFormTitle);
+        ContactDataFormLandscape(context, contactDataFormTitle);
     }
 }
 

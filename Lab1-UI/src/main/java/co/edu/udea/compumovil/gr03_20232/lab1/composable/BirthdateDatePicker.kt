@@ -3,11 +3,14 @@ package co.edu.udea.compumovil.gr03_20232.lab1.composable
 import android.app.DatePickerDialog
 import android.content.Context
 import android.widget.DatePicker
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.DateRange
@@ -46,32 +49,46 @@ fun BirthdateDatePicker(
         birthdateMonth,
         birthdateDay
     )
-    Row(
+
+    Column(
         modifier = Modifier
             .fillMaxWidth()
-            .height(60.dp),
-        horizontalArrangement = Arrangement.SpaceBetween,
-        verticalAlignment = Alignment.CenterVertically
+            .padding(16.dp),
+        horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Row {
-            Icon(Icons.Filled.DateRange, contentDescription = birthdateTitle)
-            Spacer(modifier = Modifier.width(10.dp))
+        Column(
+            modifier = Modifier
+                .fillMaxWidth()
+                .clickable { datePickerDialog.show() },
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
+            Row(
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                Icon(Icons.Filled.DateRange, contentDescription = birthdateTitle)
+                Spacer(modifier = Modifier.width(4.dp)) // Espaciado entre el icono y el texto
+                Text(
+                    text = birthdateTitle,
+                    fontSize = MaterialTheme.typography.titleMedium.fontSize,
+                    fontWeight = MaterialTheme.typography.titleMedium.fontWeight,
+                )
+            }
+
             Text(
-                text = birthdateTitle,
-                fontSize = MaterialTheme.typography.titleMedium.fontSize,
-                fontWeight = MaterialTheme.typography.titleMedium.fontWeight,
+                text = birthdate.value,
+                fontSize = MaterialTheme.typography.bodyLarge.fontSize,
+                fontWeight = MaterialTheme.typography.bodyLarge.fontWeight,
+                textDecoration = TextDecoration.Underline,
             )
         }
-        Text(
-            text = birthdate.value,
-            fontSize = MaterialTheme.typography.bodyLarge.fontSize,
-            fontWeight = MaterialTheme.typography.bodyLarge.fontWeight,
-            textDecoration = TextDecoration.Underline,
-        )
+
         Button(
             onClick = {
                 datePickerDialog.show()
-            }
+            },
+            modifier = Modifier
+                .align(Alignment.CenterHorizontally)
+                .padding(top = 16.dp) // Espaciado entre el texto y el botón
         ) {
             Text(selectString)
         }

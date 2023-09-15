@@ -1,8 +1,13 @@
 package co.edu.udea.compumovil.gr03_20232.lab1.composable
 
 import android.content.Context
+import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Person
@@ -11,8 +16,14 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
+import androidx.compose.material3.TextFieldColors
 import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
@@ -26,10 +37,11 @@ import co.edu.udea.compumovil.gr03_20232.lab1.R
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun NameTextField(
-    context: Context,
-    widthFraction: Float,
-    name: TextFieldValue,
-    onNameChanged: (TextFieldValue) -> Unit) {
+context: Context,
+widthFraction: Float,
+name: TextFieldValue,
+onNameChanged: (TextFieldValue) -> Unit
+) {
     val nameTextFieldHint = context.getString(R.string.name_text_field_hint)
     TextField(
         value = name,
@@ -40,8 +52,16 @@ fun NameTextField(
             Text(nameTextFieldHint)
         },
         modifier = Modifier
-            .fillMaxWidth(widthFraction)
-            .height(60.dp),
+            .fillMaxWidth(0.7f)
+            .height(60.dp)
+            .border(
+                width = 2.dp,
+                color = MaterialTheme.colorScheme.primary, // Cambia el color del borde según tus preferencias
+                shape = RoundedCornerShape(16.dp) // Cambia el radio de los bordes
+            )
+            .padding(4.dp)
+            .fillMaxWidth(1.2f), // Establece el valor de widthFraction en 0.5 para la mitad de la pantalla
+            //.align(Alignment.CenterHorizontally), // Añade un pequeño espacio entre el borde y el contenido
         colors = TextFieldDefaults.textFieldColors(
             containerColor = Color.Transparent,
         ),
@@ -55,7 +75,6 @@ fun NameTextField(
             imeAction = ImeAction.Next,
             capitalization = KeyboardCapitalization.Words,
             autoCorrect = false
-
         ),
         singleLine = true,
         leadingIcon = {

@@ -1,8 +1,11 @@
 package co.edu.udea.compumovil.gr03_20232.lab1.composable
 
 import android.content.Context
+import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.Person
@@ -41,8 +44,14 @@ fun SurnameTextField(
             Text(lastNameTextFieldHint)
         },
         modifier = Modifier
-            .fillMaxWidth(widthFraction)
-            .height(60.dp),
+            .fillMaxWidth(0.7f)
+            .height(60.dp)
+            .border(
+                width = 2.dp,
+                color = MaterialTheme.colorScheme.primary, // Cambia el color del borde según tus preferencias
+                shape = RoundedCornerShape(16.dp) // Cambia el radio de los bordes
+            )
+            .padding(4.dp), // Añade un pequeño espacio entre el borde y el contenido
         colors = TextFieldDefaults.textFieldColors(
             containerColor = Color.Transparent,
         ),
