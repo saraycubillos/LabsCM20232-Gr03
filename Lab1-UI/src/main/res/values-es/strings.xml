@@ -1,0 +1,28 @@
+<resources>
+    <string name="app_name">Labs20232-Gr03</string>
+    <string name="title_activity_personal_data">ActividadDatosPersonales</string>
+    <string name="title_activity_contact_data">ActividadDatosContacto</string>
+    <string name="full_name">Nombre completo</string>
+    <string name="name_text_field_hint">Nombre</string>
+    <string name="phone_text_field_hint">Teléfono</string>
+    <string name="email_text_field_hint">Correo electrónico</string>
+    <string name="address_text_field_hint">Dirección</string>
+    <string name="surname_text_field_hint">Apellido</string>
+    <string name="sex_title_radiobutton">Sexo: </string>
+    <string name="male_sex">Masculino</string>
+    <string name="female_sex">Femenino</string>
+    <string name="other">Otro</string>
+    <string name="birth_date_title">Fecha de nacimiento: </string>
+    <string name="select">Seleccionar</string>
+    <string name="school_grade_title">Grado escolar: </string>
+    <string name="school_grade_primary">Primario</string>
+    <string name="school_grade_secondary">Secundario</string>
+    <string name="school_grade_university">Universidad</string>
+    <string name="invalid_name_toast_message">El nombre es obligatorio y no puede contener números</string>
+    <string name="invalid_surname_toast_message">El apellido es obligatorio y no puede contener números</string>
+    <string name="invalid_birthdate_toast_message">La fecha de nacimiento es obligatoria y no puede ser una fecha futura</string>
+    <string name="personal_data_form_title">Información personal</string>
+    <string name="contact_data_form_title">Información de contacto</string>
+    <string name="next">Siguiente</string>
+    <string name="title_activity_test">Prueba</string>
+</resources>

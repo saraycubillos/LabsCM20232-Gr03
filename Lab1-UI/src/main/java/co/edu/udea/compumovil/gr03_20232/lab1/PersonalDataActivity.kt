@@ -1,6 +1,7 @@
 package co.edu.udea.compumovil.gr03_20232.lab1
 
 import android.content.Context
+import android.content.Intent
 import android.content.res.Configuration
 import android.os.Bundle
 import android.util.Log
@@ -63,6 +64,7 @@ var surname by mutableStateOf(TextFieldValue(""))
 var selectedSexOption = mutableStateOf("")
 var birthDate = mutableStateOf("")
 var selectedSchoolGradeOption by mutableStateOf("")
+
 
 @Composable
 fun PersonalDataForm() {
@@ -161,6 +163,8 @@ fun personalDataFormNextButtonOnClick(context: Context) {
     if (isDataValid(context)) {
         trimNameAndSurname()
         logcatAllData()
+        val contactDataActivityIntent = Intent(context, ContactDataActivity::class.java)
+        context.startActivity(contactDataActivityIntent)
     }
 }
 

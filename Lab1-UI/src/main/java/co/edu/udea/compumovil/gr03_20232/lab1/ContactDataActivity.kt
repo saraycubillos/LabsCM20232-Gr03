@@ -107,6 +107,7 @@ fun ContactDataFormLandscape(context: Context, titulo: String) {
 
 
         // Aquí puedes agregar los campos y contenido del formulario de datos personales
+    //Falta boton siguiente, que vuelva a la principal pero los campos borrados
 }
 
 @RequiresApi(Build.VERSION_CODES.M)

@@ -1,11 +1,12 @@
 <resources>
     <string name="app_name">Labs20232-Gr03</string>
     <string name="title_activity_personal_data">PersonalDataActivity</string>
+    <string name="title_activity_contact_data">ContactDataActivity</string>
     <string name="full_name">Full Name</string>
     <string name="name_text_field_hint">Name</string>
     <string name="phone_text_field_hint">Phone</string>
     <string name="email_text_field_hint">Email</string>
-    <string name="adress_text_field_hint">Adress</string>
+    <string name="address_text_field_hint">Address</string>
     <string name="surname_text_field_hint">Surname</string>
     <string name="sex_title_radiobutton">Sex: </string>
     <string name="male_sex">Male</string>
@@ -23,5 +24,4 @@
     <string name="personal_data_form_title">PERSONAL INFORMATION</string>
     <string name="contact_data_form_title">Contact Information</string>
     <string name="next">Next</string>
-    <string name="title_activity_test">Test</string>
 </resources>

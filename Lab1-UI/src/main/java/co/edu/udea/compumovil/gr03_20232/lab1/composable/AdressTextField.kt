@@ -5,9 +5,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Email
 import androidx.compose.material.icons.filled.LocationOn
-import androidx.compose.material.icons.filled.Phone
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
@@ -32,7 +30,7 @@ fun AdressTextField(
     widthFraction: Float,
     name: TextFieldValue,
     onNameChanged: (TextFieldValue) -> Unit) {
-    val adressTextFieldHint = context.getString(R.string.adress_text_field_hint)
+    val adressTextFieldHint = context.getString(R.string.address_text_field_hint)
     TextField(
         value = name,
         onValueChange = {
