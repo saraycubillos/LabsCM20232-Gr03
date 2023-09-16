@@ -4,6 +4,7 @@ import android.content.Context
 import android.os.Build
 import androidx.annotation.RequiresApi
 import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
@@ -19,10 +20,12 @@ import androidx.compose.material3.Card
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.*
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.Color
@@ -95,18 +98,19 @@ fun CountryAutoComplete(
                 onClick = {
                     expanded = false
                 }
-            )
+            ),
+        horizontalAlignment = Alignment.CenterHorizontally
     ) {
 
         Text(
             modifier = Modifier.padding(start = 3.dp, bottom = 2.dp),
             text = context.getString(R.string.country_text_field_hint),
             fontSize = 16.sp,
-            color = Color.Black,
+            color = Color.Gray,
             fontWeight = FontWeight.Medium
         )
 
-        Column(modifier = Modifier.fillMaxWidth()) {
+        Column(modifier = Modifier.fillMaxWidth(0.7f)) {
 
             Row(modifier = Modifier.fillMaxWidth()) {
                 TextField(
@@ -115,9 +119,9 @@ fun CountryAutoComplete(
                         .height(heightTextFields)
                         .border(
                             width = 1.8.dp,
-                            color = Color.Black,
+                            color = MaterialTheme.colorScheme.primary,
                             shape = RoundedCornerShape(15.dp)
-                        )
+                        ).background(Color.Transparent)
                         .onGloballyPositioned { coordinates ->
                             textFieldSize = coordinates.size.toSize()
                         },
@@ -132,7 +136,7 @@ fun CountryAutoComplete(
                         cursorColor = Color.Black
                     ),
                     textStyle = TextStyle(
-                        color = Color.Black,
+                        color = MaterialTheme.colorScheme.primary,
                         fontSize = 16.sp
                     ),
                     keyboardOptions = KeyboardOptions(
@@ -146,7 +150,7 @@ fun CountryAutoComplete(
                                 modifier = Modifier.size(24.dp),
                                 imageVector = Icons.Rounded.KeyboardArrowDown,
                                 contentDescription = "arrow",
-                                tint = Color.Black
+                                tint = MaterialTheme.colorScheme.primary,
                             )
                         }
                     }
@@ -159,7 +163,8 @@ fun CountryAutoComplete(
                         .padding(horizontal = 5.dp)
                         .width(textFieldSize.width.dp),
                     //elevation = 15.dp,
-                    shape = RoundedCornerShape(10.dp)
+                    shape = RoundedCornerShape(10.dp),
+                    //container = Color.Transparent,
                 ) {
 
                     LazyColumn(

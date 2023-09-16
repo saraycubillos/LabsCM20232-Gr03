@@ -19,10 +19,12 @@ import androidx.compose.material3.Card
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.*
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.Color
@@ -76,18 +78,19 @@ fun CityAutoComplete(
                 onClick = {
                     expanded = false
                 }
-            )
+            ),
+        horizontalAlignment = Alignment.CenterHorizontally
     ) {
 
         Text(
             modifier = Modifier.padding(start = 3.dp, bottom = 2.dp),
             text = context.getString(R.string.city_text_field_hint),
             fontSize = 16.sp,
-            color = Color.Black,
+            color = Color.Gray,
             fontWeight = FontWeight.Medium
         )
 
-        Column(modifier = Modifier.fillMaxWidth()) {
+        Column(modifier = Modifier.fillMaxWidth(0.7f)) {
 
             Row(modifier = Modifier.fillMaxWidth()) {
                 TextField(
@@ -96,7 +99,7 @@ fun CityAutoComplete(
                         .height(heightTextFields)
                         .border(
                             width = 1.8.dp,
-                            color = Color.Black,
+                            color = MaterialTheme.colorScheme.primary,
                             shape = RoundedCornerShape(15.dp)
                         )
                         .onGloballyPositioned { coordinates ->
@@ -127,7 +130,7 @@ fun CityAutoComplete(
                                 modifier = Modifier.size(24.dp),
                                 imageVector = Icons.Rounded.KeyboardArrowDown,
                                 contentDescription = "arrow",
-                                tint = Color.Black
+                                tint = MaterialTheme.colorScheme.primary
                             )
                         }
                     }

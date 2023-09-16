@@ -22,7 +22,7 @@
     <string name="invalid_surname_toast_message">Surname is mandatory and can not have numbers</string>
     <string name="invalid_birthdate_toast_message">Birthdate is mandatory and can not be a date on the future</string>
     <string name="personal_data_form_title">PERSONAL INFORMATION</string>
-    <string name="contact_data_form_title">Contact Information</string>
+    <string name="contact_data_form_title">CONTACT INFORMATION</string>
     <string name="phone_invalid">Phone number is mandatory</string>
     <string name="email_invalid">Email is mandatory and must be a valid email</string>
     <string name="country_invalid">Country is mandatory and must be one of the list</string>

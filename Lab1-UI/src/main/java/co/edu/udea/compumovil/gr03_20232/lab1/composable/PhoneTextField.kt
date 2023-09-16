@@ -1,10 +1,14 @@
 package co.edu.udea.compumovil.gr03_20232.lab1.composable
 
 import android.content.Context
+import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Person
 import androidx.compose.material.icons.filled.Phone
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
@@ -28,20 +32,29 @@ import co.edu.udea.compumovil.gr03_20232.lab1.R
 fun PhoneTextField(
     context: Context,
     widthFraction: Float,
-    phone: TextFieldValue,
-    onPhoneChanged: (TextFieldValue) -> Unit) {
-    val phoneTextFieldHint = context.getString(R.string.phone_text_field_hint)
+    name: TextFieldValue,
+    onNameChanged: (TextFieldValue) -> Unit
+) {
+    val nameTextFieldHint = context.getString(R.string.phone_text_field_hint)
     TextField(
-        value = phone,
+        value = name,
         onValueChange = {
-            onPhoneChanged(it)
+            onNameChanged(it)
         },
         label = {
-            Text(phoneTextFieldHint)
+            Text(nameTextFieldHint)
         },
         modifier = Modifier
-            .fillMaxWidth(widthFraction)
-            .height(60.dp),
+            .fillMaxWidth(0.7f)
+            .height(60.dp)
+            .border(
+                width = 2.dp,
+                color = MaterialTheme.colorScheme.primary, // Cambia el color del borde según tus preferencias
+                shape = RoundedCornerShape(16.dp) // Cambia el radio de los bordes
+            )
+            .padding(4.dp)
+            .fillMaxWidth(1.2f), // Establece el valor de widthFraction en 0.5 para la mitad de la pantalla
+        //.align(Alignment.CenterHorizontally), // Añade un pequeño espacio entre el borde y el contenido
         colors = TextFieldDefaults.textFieldColors(
             containerColor = Color.Transparent,
         ),
@@ -51,13 +64,14 @@ fun PhoneTextField(
             fontWeight = MaterialTheme.typography.bodyLarge.fontWeight,
         ),
         keyboardOptions = KeyboardOptions(
-            keyboardType = KeyboardType.Phone,
+            keyboardType = KeyboardType.Text,
             imeAction = ImeAction.Next,
+            capitalization = KeyboardCapitalization.Words,
             autoCorrect = false
         ),
         singleLine = true,
         leadingIcon = {
-            Icon(Icons.Filled.Phone, contentDescription = phoneTextFieldHint)
+            Icon(Icons.Filled.Phone, contentDescription = nameTextFieldHint)
         }
     )
 }
