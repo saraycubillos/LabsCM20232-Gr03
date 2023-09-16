@@ -29,5 +29,6 @@
     <string name="contact_data_form_finished_toast_message">Logcats listos</string>
     <string name="country_text_field_hint">País</string>
     <string name="city_text_field_hint">Ciudad</string>
+    <string name="city_invalid">La ciudad debe ser una de la lista del pais</string>
     <string name="next">Siguiente</string>
 </resources>

@@ -1,8 +1,6 @@
 package co.edu.udea.compumovil.gr03_20232.lab1.composable
 
 import android.content.Context
-import android.os.Build
-import androidx.annotation.RequiresApi
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
@@ -36,33 +34,25 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.unit.toSize
+import androidx.lifecycle.MutableLiveData
 import co.edu.udea.compumovil.gr03_20232.lab1.R
+import co.edu.udea.compumovil.gr03_20232.lab1.api.CitiesResponse
+import co.edu.udea.compumovil.gr03_20232.lab1.api.getCitiesApi
+import kotlinx.coroutines.delay
 
-
-interface CitiesApi {
-    @POST("countries/cities")
-    suspend fun getCities(@Body request: CountryRequest): CityResponse
-}
-
-data class CountryRequest(val country: String)
-data class CityResponse(val cities: List<String>)
-
-@RequiresApi(Build.VERSION_CODES.M)
 @OptIn(ExperimentalMaterial3Api::class)
-
-
 @Composable
 fun CityAutoComplete(
     context: Context,
     selectedCountry : MutableState<String>,
     city: MutableState<String>,
-    cities: MutableSet<String>
+    cities: MutableLiveData<CitiesResponse>
 ) {
-    //TODO la peticion api con country para obtener las ciudades y agregarlas al set
     LaunchedEffect(selectedCountry.value) {
-        val citiesFromApi = fetchCitiesFromApi(selectedCountry.value)
-        cities.clear()
-        cities.addAll(citiesFromApi)
+        if (selectedCountry.value.isNotEmpty()) {
+            delay(5000)
+            getCitiesApi(selectedCountry.value, cities)
+        }
     }
 
     val heightTextFields by remember {
@@ -164,33 +154,37 @@ fun CityAutoComplete(
                     ) {
 
                         if (city.value.isNotEmpty()) {
-                            items(
-                                cities.filter {
-                                    it.lowercase()
-                                        .contains(city.value.lowercase()) || it.lowercase()
-                                        .contains(context.getString(R.string.other))
+                            cities.value?.data?.filter {
+                                it.lowercase()
+                                    .contains(city.value.lowercase()) || it.lowercase()
+                                    .contains(context.getString(R.string.other))
+                            }?.let {
+                                items(
+                                    it
+                                        .sorted()
+                                ) {
+                                    CategoryItems(
+                                        title = it,
+                                        category = city,
+                                        onExpandedChange = { newExpanded ->
+                                            expanded = newExpanded
+                                        }
+                                    )
                                 }
-                                    .sorted()
-                            ) {
-                                CategoryItems(
-                                    title = it,
-                                    category = city,
-                                    onExpandedChange = { newExpanded ->
-                                        expanded = newExpanded
-                                    }
-                                )
                             }
                         } else {
-                            items(
-                                cities.sorted()
-                            ) {
-                                CategoryItems(
-                                    title = it,
-                                    category = city,
-                                    onExpandedChange = { newExpanded ->
-                                        expanded = newExpanded
-                                    }
-                                )
+                            cities.value?.data?.let {
+                                items(
+                                    it.sorted()
+                                ) {
+                                    CategoryItems(
+                                        title = it,
+                                        category = city,
+                                        onExpandedChange = { newExpanded ->
+                                            expanded = newExpanded
+                                        }
+                                    )
+                                }
                             }
                         }
                     }
@@ -199,27 +193,3 @@ fun CityAutoComplete(
         }
     }
 }
-
-suspend fun fetchCitiesFromApi(country: String): List<String> {
-    val retrofit = Retrofit.Builder()
-        .baseUrl("https://countriesnow.space/api/v0.1/")
-        .addConverterFactory(MoshiConverterFactory.create())
-        .build()
-
-    val api = retrofit.create(CitiesApi::class.java)
-
-    return withContext(Dispatchers.IO) {
-        val request = CountryRequest(country)
-        val response = api.getCities(request)
-
-        if (response.cities.isNotEmpty()) {
-            response.cities
-        } else {
-            emptyList()
-        }
-    }
-}
-
-
-
-

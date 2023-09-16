@@ -28,6 +28,8 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.MutableLiveData
+import co.edu.udea.compumovil.gr03_20232.lab1.api.CitiesResponse
 import co.edu.udea.compumovil.gr03_20232.lab1.composable.AddressTextField
 import co.edu.udea.compumovil.gr03_20232.lab1.composable.CityAutoComplete
 import co.edu.udea.compumovil.gr03_20232.lab1.composable.CountryAutoComplete
@@ -58,7 +60,7 @@ var email by mutableStateOf(TextFieldValue(""))
 var address by mutableStateOf(TextFieldValue(""))
 var country = mutableStateOf("")
 var city = mutableStateOf("")
-var cities = mutableSetOf<String>()
+val cities = MutableLiveData<CitiesResponse>()
 val countries = mutableSetOf<String>()
 
 @RequiresApi(Build.VERSION_CODES.M)
@@ -156,9 +158,23 @@ fun isContactDataValid(context: Context): Boolean {
         toastMessage.append(". ")
     }
 
+    if (!cityIsValid()) {
+        toastMessage.append(context.getString(R.string.city_invalid))
+        toastMessage.append(". ")
+    }
+
     if (toastMessage.isNotEmpty()) {
         Toast.makeText(context, toastMessage.toString(), Toast.LENGTH_SHORT).show()
         return false
+    }
+    return true
+}
+
+fun cityIsValid(): Boolean {
+    if (countryIsValid()) {
+        if (city.value.isNotEmpty()) {
+            return cities.value?.data?.contains(city.value) == true
+        }
     }
     return true
 }
