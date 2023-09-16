@@ -11,9 +11,7 @@ import androidx.activity.compose.setContent
 import androidx.annotation.RequiresApi
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
@@ -32,11 +30,10 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import co.edu.udea.compumovil.gr03_20232.lab1.composable.AddressTextField
 import co.edu.udea.compumovil.gr03_20232.lab1.composable.CityAutoComplete
-import co.edu.udea.compumovil.gr03_20232.lab1.composable.CityDropdownField
-import co.edu.udea.compumovil.gr03_20232.lab1.composable.EmailTextField
-import co.edu.udea.compumovil.gr03_20232.lab1.composable.PhoneTextField
 import co.edu.udea.compumovil.gr03_20232.lab1.composable.CountryAutoComplete
+import co.edu.udea.compumovil.gr03_20232.lab1.composable.EmailTextField
 import co.edu.udea.compumovil.gr03_20232.lab1.composable.NextButtonCenterEnd
+import co.edu.udea.compumovil.gr03_20232.lab1.composable.PhoneTextField
 import co.edu.udea.compumovil.gr03_20232.lab1.composable.TitleText
 import co.edu.udea.compumovil.gr03_20232.lab1.ui.theme.Labs20232Gr03Theme
 
@@ -105,7 +102,7 @@ fun ContactDataFormLandscape(context: Context, title: String) {
             );
             CityAutoComplete(
                 context = context,
-                country = country,
+                selectedCountry = country,
                 city = city,
                 cities = cities
             )

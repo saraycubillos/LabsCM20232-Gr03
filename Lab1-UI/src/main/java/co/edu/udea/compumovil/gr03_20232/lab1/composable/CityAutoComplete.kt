@@ -38,18 +38,31 @@ import androidx.compose.ui.unit.sp
 import androidx.compose.ui.unit.toSize
 import co.edu.udea.compumovil.gr03_20232.lab1.R
 
+
+interface CitiesApi {
+    @POST("countries/cities")
+    suspend fun getCities(@Body request: CountryRequest): CityResponse
+}
+
+data class CountryRequest(val country: String)
+data class CityResponse(val cities: List<String>)
+
 @RequiresApi(Build.VERSION_CODES.M)
 @OptIn(ExperimentalMaterial3Api::class)
+
+
 @Composable
 fun CityAutoComplete(
     context: Context,
-    country : MutableState<String>,
+    selectedCountry : MutableState<String>,
     city: MutableState<String>,
     cities: MutableSet<String>
 ) {
     //TODO la peticion api con country para obtener las ciudades y agregarlas al set
-    LaunchedEffect(country.value) {
-        //cities.addAll(setOf())
+    LaunchedEffect(selectedCountry.value) {
+        val citiesFromApi = fetchCitiesFromApi(selectedCountry.value)
+        cities.clear()
+        cities.addAll(citiesFromApi)
     }
 
     val heightTextFields by remember {
@@ -186,4 +199,27 @@ fun CityAutoComplete(
         }
     }
 }
+
+suspend fun fetchCitiesFromApi(country: String): List<String> {
+    val retrofit = Retrofit.Builder()
+        .baseUrl("https://countriesnow.space/api/v0.1/")
+        .addConverterFactory(MoshiConverterFactory.create())
+        .build()
+
+    val api = retrofit.create(CitiesApi::class.java)
+
+    return withContext(Dispatchers.IO) {
+        val request = CountryRequest(country)
+        val response = api.getCities(request)
+
+        if (response.cities.isNotEmpty()) {
+            response.cities
+        } else {
+            emptyList()
+        }
+    }
+}
+
+
+
 
